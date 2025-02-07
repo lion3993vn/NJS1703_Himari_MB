@@ -1,53 +1,30 @@
 import React from "react";
-import {
-  View,
-  Text,
-  ScrollView,
-  Image,
-  TextInput,
-  StyleSheet,
-} from "react-native";
+import { View, Text, ScrollView, StyleSheet } from "react-native";
 import Header from "../components/Header";
+import Banner from "../components/Banner";
+import CategoryList from "../components/CategoryList";
+import ProductList from "../components/ProductItem";
 
 export default function HomeScreen() {
   return (
     <ScrollView style={styles.container}>
-      {/* Search Bar */}
-      <View>
-        <Header />
-      </View>
+      <Header />
+      <Banner />
 
       {/* Categories */}
-      <Text style={styles.sectionTitle}>Danh mục</Text>
-      <ScrollView
-        horizontal
-        showsHorizontalScrollIndicator={false}
-        style={styles.categories}
-      >
-        {/* Category Item */}
-        <View style={styles.categoryItem}>
-          <Image
-            source={{ uri: "https://example.com/category1.png" }}
-            style={styles.categoryImage}
-          />
-          <Text style={styles.categoryText}>Trang Diem Moi</Text>
-        </View>
-        {/* Repeat for other categories */}
-      </ScrollView>
+      <View style={styles.sectionHeader}>
+        <Text style={styles.sectionTitle}>Danh mục</Text>
+        <Text style={styles.viewAll}>Xem tất cả</Text>
+      </View>
+      <CategoryList />
 
       {/* Products */}
-      <Text style={styles.sectionTitle}>Sản phẩm</Text>
+      <View style={styles.sectionHeader}>
+        <Text style={styles.sectionTitle}>Sản phẩm</Text>
+        <Text style={styles.viewAll}>Xem tất cả</Text>
+      </View>
       <View style={styles.productList}>
-        {/* Product Item */}
-        <View style={styles.productItem}>
-          <Image
-            source={{ uri: "https://example.com/product1.png" }}
-            style={styles.productImage}
-          />
-          <Text style={styles.productTitle}>Gel Tay Te Bao Chet</Text>
-          <Text style={styles.productPrice}>278.000đ</Text>
-        </View>
-        {/* Repeat for other products */}
+        <ProductList />
       </View>
     </ScrollView>
   );
@@ -55,27 +32,18 @@ export default function HomeScreen() {
 
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: "#fff", paddingTop: 35 },
-
-  searchInput: { backgroundColor: "#fff", padding: 8, borderRadius: 8 },
-  sectionTitle: { fontSize: 18, fontWeight: "bold", margin: 10 },
+  sectionHeader: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    padding: 10,
+  },
+  sectionTitle: { fontSize: 18, fontWeight: "bold", color: "#27ae60" },
+  viewAll: { color: "#2980b9" },
   categories: { flexDirection: "row", paddingHorizontal: 10 },
-  categoryItem: { alignItems: "center", marginRight: 15 },
-  categoryImage: { width: 60, height: 60, borderRadius: 10 },
-  categoryText: { fontSize: 14, marginTop: 5 },
   productList: {
     flexDirection: "row",
     flexWrap: "wrap",
     justifyContent: "space-between",
     padding: 10,
   },
-  productItem: {
-    width: "48%",
-    backgroundColor: "#fff",
-    padding: 10,
-    borderRadius: 8,
-    marginBottom: 10,
-  },
-  productImage: { width: "100%", height: 100, borderRadius: 8 },
-  productTitle: { fontSize: 14, marginVertical: 5 },
-  productPrice: { fontSize: 16, fontWeight: "bold", color: "#e74c3c" },
 });
