@@ -1,5 +1,5 @@
-import AppNavigator from "./src/navigation/AppNavigator";
+import RootLayout from "./src/navigation/RootLayout";
 
 export default function App() {
-  return <AppNavigator />;
+  return <RootLayout />;
 }
