@@ -2,8 +2,8 @@ import React from "react";
 import { View, Text, ScrollView, StyleSheet } from "react-native";
 import Header from "../components/Header";
 import Banner from "../components/Banner";
-import CategoryList from "../components/CategoryList";
-import ProductList from "../components/ProductItem";
+import ProductList from "../components/product/ProductList";
+import CategoryList from "../components/categories/CategoryList";
 
 export default function HomeScreen() {
   return (

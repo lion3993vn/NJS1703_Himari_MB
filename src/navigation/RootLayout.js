@@ -16,6 +16,7 @@ export default function RootLayout() {
       <Tab.Navigator
         screenOptions={({ route }) => ({
           headerShown: false,
+          tabBarActiveTintColor: "#37805F",
           tabBarIcon: ({ color, size }) => {
             let iconName;
             if (route.name === "Trang Trủ") iconName = "home";

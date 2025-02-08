@@ -16,31 +16,39 @@ const categories = [
   {
     id: "1",
     name: "Trang Điểm Môi",
-    image: require("../../assets/img/sample.png"),
+    image: require("../../../assets/img/sample.png"),
   },
   {
     id: "2",
     name: "Trang Điểm Mắt",
-    image: require("../../assets/img/sample.png"),
+    image: require("../../../assets/img/sample.png"),
   },
   {
     id: "3",
     name: "Trang Điểm Mặt",
-    image: require("../../assets/img/sample.png"),
+    image: require("../../../assets/img/sample.png"),
   },
-  { id: "4", name: "Mặt Nạ", image: require("../../assets/img/sample.png") },
+  { id: "4", name: "Mặt Nạ", image: require("../../../assets/img/sample.png") },
   {
     id: "5",
     name: "Sữa Rửa Mặt",
-    image: require("../../assets/img/sample.png"),
+    image: require("../../../assets/img/sample.png"),
   },
-  { id: "6", name: "Dầu Gội", image: require("../../assets/img/sample.png") },
+  {
+    id: "6",
+    name: "Dầu Gội",
+    image: require("../../../assets/img/sample.png"),
+  },
   {
     id: "7",
     name: "Dưỡng Da",
-    image: require("../../assets/img/sample.png"),
+    image: require("../../../assets/img/sample.png"),
   },
-  { id: "8", name: "Nước Hoa", image: require("../../assets/img/sample.png") },
+  {
+    id: "8",
+    name: "Nước Hoa",
+    image: require("../../../assets/img/sample.png"),
+  },
 ];
 const backgroundColors = [
   "#FFD700",
