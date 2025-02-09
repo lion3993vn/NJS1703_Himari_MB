@@ -31,7 +31,7 @@ export default function HomeScreen() {
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: "#fff", paddingTop: 35 },
+  container: { flex: 1, backgroundColor: "#fff", paddingVertical: 15 },
   sectionHeader: {
     flexDirection: "row",
     justifyContent: "space-between",
