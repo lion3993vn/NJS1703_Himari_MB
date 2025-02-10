@@ -11,6 +11,7 @@ import Location from "react-native-vector-icons/Entypo";
 import TrackingOrder from "react-native-vector-icons/Entypo";
 import Logo from "../../assets/img/Logo.png";
 import Search from "react-native-vector-icons/AntDesign";
+import { Text } from "react-native-web";
 
 const Header = () => {
   return (
