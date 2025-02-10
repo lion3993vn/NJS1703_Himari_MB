@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   View,
   Text,
@@ -9,8 +9,11 @@ import {
   StyleSheet,
 } from "react-native";
 import { Ionicons, MaterialIcons } from "@expo/vector-icons";
-import Scan from "react-native-vector-icons/AntDesign";
+import Search from "react-native-vector-icons/AntDesign";
+import User from "react-native-vector-icons/FontAwesome"
+import { useNavigation } from "@react-navigation/native";
 const ProfileScreen = () => {
+  const navigation = useNavigation();
   const user = {
     name: "Trọng Minh",
     points: 0,
@@ -35,12 +38,15 @@ const ProfileScreen = () => {
     { id: 7, title: "Hỏi đáp", icon: "help-circle-outline" },
     { id: 8, title: "Thương hiệu", icon: "briefcase-outline" },
   ];
-
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   return (
     <View style={styles.container}>
       {/* Header với gradient */}
       <View style={styles.header}>
-        <TextInput style={styles.searchBar} placeholder="Quản lý tài khoản" />
+        <View style={styles.searchBar}>
+        <Search name="search1" size={22} style={styles.searchIcon} />
+        <TextInput placeholder="Quản lý tài khoản" />
+        </View>
         <Ionicons
           name="qr-code-outline"
           size={24}
@@ -51,11 +57,28 @@ const ProfileScreen = () => {
 
       {/* Thông tin người dùng */}
       <View style={styles.profileInfo}>
-        <Image source={{ uri: user.avatar }} style={styles.avatar} />
-        <View>
-          <Text style={styles.userName}>{user.name}</Text>
-          <Text style={styles.userPoints}>{user.points} 💰</Text>
-        </View>
+        {isLoggedIn ? (
+          // Nếu đã đăng nhập
+          <View style={styles.loggedInContainer}>
+            <Image source={{ uri: user.avatar }} style={styles.avatar} />
+            <View>
+              <Text style={styles.userName}>{user.name}</Text>
+              <Text style={styles.userPoints}>{user.points} 💰</Text>
+            </View>
+          </View>
+        ) : (
+          // Nếu chưa đăng nhập
+          <View style={styles.authContainer}>
+            <TouchableOpacity style={styles.LoginLogoutButton} onPress={() => navigation.navigate("Login")}>
+              <User name="user-circle" size={20} style={styles.Icon}/>
+              <Text style={styles.authText}>Đăng Nhập</Text>
+            </TouchableOpacity>
+            <Text style={styles.centerWall}>|</Text>
+            <TouchableOpacity style={styles.LoginLogoutButton} onPress={() => setIsLoggedIn(true)}>
+              <Text style={styles.authText}>Đăng Ký</Text>
+            </TouchableOpacity>
+          </View>
+        )}
       </View>
 
       {/* Lịch sử đặt hẹn */}
@@ -114,10 +137,14 @@ const styles = StyleSheet.create({
   },
   searchBar: {
     flex: 1,
-    backgroundColor: "#fff",
-    borderRadius: 20,
-    padding: 8,
-    paddingLeft: 15,
+    flexDirection: "row",
+    alignItems: "center",
+    marginLeft: 10,
+    marginRight: 10,
+    padding:10,
+    backgroundColor:'#fff',
+    gap: 10,
+    borderRadius: 5
   },
   qrIcon: { marginLeft: 10 },
 
@@ -127,10 +154,41 @@ const styles = StyleSheet.create({
     padding: 15,
     backgroundColor: "#FFCFCF",
   },
+  loggedInContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+  },
+
   avatar: { width: 50, height: 50, borderRadius: 25, marginRight: 15 },
   userName: { fontSize: 16, fontWeight: "bold" },
   userPoints: { fontSize: 14, color: "gray" },
 
+  authContainer: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+  },
+  Icon:{
+    marginRight:5,
+    alignSelf:'center'
+  },
+  LoginLogoutButton: {
+    // backgroundColor: "#FF6B6B",
+    paddingVertical: 10,
+    paddingHorizontal: 10,
+    borderRadius: 5,
+    marginHorizontal: 5,
+    flexDirection: 'row',
+    alignItems:'center'
+  },
+  centerWall:{
+    paddingVertical:9,
+    color:'#fff',
+    height:40
+  },
+  authText: {
+    color: "white",
+    fontWeight: "bold",
+  },
   historyContainer: {
     flexDirection: "row",
     justifyContent: "space-around",

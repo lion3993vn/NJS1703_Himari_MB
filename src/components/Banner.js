@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     borderRadius: 10,
     marginHorizontal: 30,
-    resizeMode: "cover",
+    resizeMode: "contain",
   },
   dot: {
     backgroundColor: "rgba(0,0,0,.2)",
