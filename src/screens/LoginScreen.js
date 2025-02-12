@@ -23,7 +23,7 @@ const LoginScreen = () => {
           <Icon name="close" size={24} color="#fff" />
         </TouchableOpacity>
         <Text style={styles.headerTitle}>Đăng Nhập</Text>
-        <View style={{ width: 24 }} /> 
+        <View style={{ width: 24 }} />
       </View>
 
       {/* Logo */}
@@ -31,48 +31,11 @@ const LoginScreen = () => {
         source={require("../../assets/img/Logo.png")}
         style={styles.logo}
       />
+      <Text style={styles.text}>Đăng nhập với</Text>
 
-      {/* Input Email / Phone */}
-      <View>
-        
-      </View>
-      <TextInput
-        style={styles.input}
-        placeholder="Email/ Số điện thoại"
-        placeholderTextColor="#999"
-        value={email}
-        onChangeText={setEmail}
-      />
-
-      {/* Input Password */}
-      <TextInput
-        style={styles.input}
-        placeholder="Mật khẩu"
-        placeholderTextColor="#999"
-        secureTextEntry
-        value={password}
-        onChangeText={setPassword}
-      />
-
-      {/* Quên mật khẩu */}
-      <TouchableOpacity onPress={() => alert("Chức năng đang phát triển!")} style={styles.forgotPasswordContainer}>
-        <Text style={styles.forgotPassword}>Quên mật khẩu?</Text>
-      </TouchableOpacity>
-
-      {/* Nút Đăng Nhập */}
-      <TouchableOpacity
-        style={[styles.loginButton, !(email && password) && styles.disabled]}
-        disabled={!(email && password)}
-        onPress={() => alert("Đăng nhập thành công!")}
-      >
-        <Text style={styles.loginText}>Đăng Nhập</Text>
-      </TouchableOpacity>
-
-      {/* Điều hướng đến Đăng ký */}
-      <TouchableOpacity onPress={() => navigation.navigate("Register")} style={styles.registerContainer}>
-        <Text style={styles.registerText}>
-          Bạn chưa có tài khoản đăng nhập? <Text style={styles.registerLink}>Đăng ký</Text>
-        </Text>
+      {/* Nút đăng nhập Google */}
+      <TouchableOpacity style={styles.googleButton}>
+        <Image source={require("../../assets/img/googlebutton.png")} />
       </TouchableOpacity>
     </View>
   );
@@ -83,8 +46,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#fff",
     alignItems: "center",
-    paddingTop:30,
-    paddingHorizontal:10
+    paddingTop: 30,
   },
   header: {
     width: "100%",
@@ -106,58 +68,18 @@ const styles = StyleSheet.create({
     resizeMode: "contain",
     marginVertical: 20,
   },
-  input: {
-    width: "100%",
-    height: 50,
-    borderWidth: 1,
-    borderColor: "#ddd",
-    borderRadius: 8,
-    paddingHorizontal: 15,
-    fontSize: 16,
-    backgroundColor: "#F9F9F9",
-    marginBottom: 10,
+  text: {
+    fontSize: 20,
+    color: "#555",
+    marginVertical: 10,
   },
-  forgotPasswordContainer: {
-    width: "100%",
-    alignItems: "flex-end",
-  },
-  forgotPassword: {
-    color: "#FF4081",
-    fontSize: 14,
-    marginBottom: 20,
-  },
-  loginButton: {
-    width: "100%",
-    height: 50,
-    backgroundColor: "#FFB6C1",
-    justifyContent: "center",
+  googleButton: {
+    flexDirection: "row",
     alignItems: "center",
-    borderRadius: 8,
-  },
-  disabled: {
-    backgroundColor: "#FFC0CB",
-    opacity: 0.5,
-  },
-  loginText: {
-    color: "#fff",
-    fontSize: 18,
-    fontWeight: "bold",
-  },
-  registerContainer: {
-    width: "100%",
-    backgroundColor: "#FFF0C1",
     paddingVertical: 12,
+    paddingHorizontal: 20,
+    borderRadius: 5,
     marginTop: 10,
-    alignItems: "center",
-    borderRadius: 8,
-  },
-  registerText: {
-    fontSize: 14,
-    color: "black",
-  },
-  registerLink: {
-    color: "#FF4081",
-    fontWeight: "bold",
   },
 });
 

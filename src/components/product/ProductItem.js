@@ -11,114 +11,50 @@ const ProductItem = ({
   rating,
   sold,
 }) => (
-  <View style={styles.productItem}>
+  <View className="flex-1 m-1.5 bg-[#fff] rounded-xl p-2  relative elevation-sm">
     {/* Hình ảnh sản phẩm */}
-    <Image source={image} style={styles.productImage} />
+    <Image
+      source={image}
+      className="w-full h-32 rounded-lg bg-[#f8f8f8]"
+      resizeMode="contain"
+    />
 
     {/* Badge giảm giá */}
-    <View style={styles.discountBadge}>
-      <Text style={styles.discountText}>{discount}%</Text>
+    <View className="absolute top-1 right-1 bg-[#86A788] border border-orange-500 py-1 px-2 rounded-md">
+      <Text className="text-black font-bold text-xs">{discount}%</Text>
     </View>
+
     {/* Giá */}
-    <View style={styles.priceContainer}>
-      <Text style={styles.discountPrice}>
+    <View className="flex-row items-center mt-2">
+      <Text className="text-lg font-bold text-[#E68045] mr-2">
         {discountPrice.toLocaleString()}đ
       </Text>
-      <Text style={styles.originalPrice}>{price.toLocaleString()}đ</Text>
+      <Text className="text-xs line-through text-gray-500 ml-7">
+        {price.toLocaleString()}đ
+      </Text>
     </View>
+
     {/* Thương hiệu */}
-    <Text style={styles.brandName}>{brandName}</Text>
+    <Text className="text-xs text-green-700 mt-1 font-semibold">
+      {brandName}
+    </Text>
 
     {/* Tên sản phẩm */}
-    <Text numberOfLines={2} style={styles.productName}>
+    <Text
+      numberOfLines={2}
+      className="text-sm font-bold text-gray-800 mt-1 h-10"
+    >
       {name}
     </Text>
 
     {/* Đánh giá & lượt mua */}
-    <View style={styles.bottomContainer}>
-      <Text style={styles.rating}>⭐ {rating}</Text>
-      <Text style={styles.sold}>{sold.toLocaleString()} đã bán</Text>
+    <View className="flex-row justify-between mt-2">
+      <Text className="text-xs text-orange-500 font-semibold">⭐ {rating}</Text>
+      <Text className="text-xs text-gray-500">
+        {sold.toLocaleString()} đã bán
+      </Text>
     </View>
   </View>
 );
-
-const styles = StyleSheet.create({
-  productItem: {
-    flex: 1,
-    margin: 5,
-    backgroundColor: "#fff",
-    borderRadius: 10,
-    padding: 10,
-    elevation: 2, // Đổ bóng nhẹ
-    position: "relative",
-  },
-  discountBadge: {
-    position: "absolute",
-    top: 5,
-    right: 5,
-    backgroundColor: "#86A788",
-    borderColor: "#FFA500", // Màu cam nổi bật
-    paddingVertical: 3,
-    paddingHorizontal: 8,
-    borderRadius: 5,
-    borderWidth: 1,
-  },
-  discountText: {
-    color: "black",
-    fontWeight: "bold",
-    fontSize: 12,
-  },
-  productImage: {
-    width: "100%",
-    height: 120,
-    borderRadius: 10,
-    resizeMode: "contain",
-    backgroundColor: "#f8f8f8",
-  },
-  brandName: {
-    fontSize: 12,
-    color: "#008000",
-    marginTop: 5,
-    fontWeight: "600",
-  },
-  productName: {
-    fontSize: 14,
-    fontWeight: "bold",
-    color: "#333",
-    marginTop: 3,
-    height: 40,
-  },
-  priceContainer: {
-    flexDirection: "row",
-    alignItems: "center",
-    marginTop: 5,
-  },
-  discountPrice: {
-    fontSize: 16,
-    fontWeight: "bold",
-    color: "#E68045",
-    marginRight: 5,
-  },
-  originalPrice: {
-    fontSize: 12,
-    textDecorationLine: "line-through",
-    color: "#888",
-    marginLeft: 30,
-  },
-  bottomContainer: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    marginTop: 5,
-  },
-  rating: {
-    fontSize: 12,
-    color: "#FFA500",
-    fontWeight: "600",
-  },
-  sold: {
-    fontSize: 12,
-    color: "#888",
-  },
-});
 
 export default ProductItem;

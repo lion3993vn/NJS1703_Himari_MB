@@ -3,135 +3,145 @@ import {
   View,
   Text,
   TextInput,
-  Image,
   TouchableOpacity,
-  FlatList,
+  Image,
+  ScrollView,
   StyleSheet,
 } from "react-native";
-import { Ionicons, MaterialIcons } from "@expo/vector-icons";
+import { Feather, AntDesign } from "@expo/vector-icons";
 import Search from "react-native-vector-icons/AntDesign";
-import User from "react-native-vector-icons/FontAwesome"
+import User from "react-native-vector-icons/FontAwesome";
 import { useNavigation } from "@react-navigation/native";
+import Scan from "react-native-vector-icons/MaterialCommunityIcons";
 const ProfileScreen = () => {
   const navigation = useNavigation();
-  const user = {
-    name: "Trọng Minh",
-    points: 0,
-    avatar: "https://cdn-icons-png.flaticon.com/512/149/149071.png",
-    location: "Phường Nguyễn An Ninh, TP. Vũng Tàu",
-  };
-
-  const orderStatus = [
-    { id: 1, title: "Mới đặt", icon: "receipt-outline" },
-    { id: 2, title: "Đang xử lý", icon: "sync-outline" },
-    { id: 3, title: "Thành công", icon: "checkmark-circle-outline" },
-    { id: 4, title: "Đã hủy", icon: "close-circle-outline" },
-  ];
-
-  const menuItems = [
-    { id: 1, title: "Đã xem", icon: "eye-outline" },
-    { id: 2, title: "Yêu thích", icon: "heart-outline" },
-    { id: 3, title: "Đánh giá", icon: "star-outline" },
-    { id: 4, title: "Đổi quà", icon: "gift-outline" },
-    { id: 5, title: "Cá nhân", icon: "person-outline" },
-    { id: 6, title: "Sổ địa chỉ", icon: "location-outline" },
-    { id: 7, title: "Hỏi đáp", icon: "help-circle-outline" },
-    { id: 8, title: "Thương hiệu", icon: "briefcase-outline" },
-  ];
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   return (
-    <View style={styles.container}>
-      {/* Header với gradient */}
+    <ScrollView style={styles.container}>
+      {/* Header */}
       <View style={styles.header}>
         <View style={styles.searchBar}>
-        <Search name="search1" size={22} style={styles.searchIcon} />
-        <TextInput placeholder="Quản lý tài khoản" />
+          <Search name="search1" size={22} style={styles.searchIcon} />
+          <TextInput placeholder="Quản lý tài khoản" />
         </View>
-        <Ionicons
-          name="qr-code-outline"
-          size={24}
-          color="white"
-          style={styles.qrIcon}
-        />
+        <TouchableOpacity>
+          <Scan name="line-scan" size={24} color="#FFF" />
+        </TouchableOpacity>
       </View>
-
-      {/* Thông tin người dùng */}
-      <View style={styles.profileInfo}>
+      {/* User Info */}
+      <View style={styles.userInfo}>
         {isLoggedIn ? (
-          // Nếu đã đăng nhập
-          <View style={styles.loggedInContainer}>
-            <Image source={{ uri: user.avatar }} style={styles.avatar} />
-            <View>
-              <Text style={styles.userName}>{user.name}</Text>
-              <Text style={styles.userPoints}>{user.points} 💰</Text>
+          <>
+            <Image
+              source={{ uri: "https://via.placeholder.com/50" }}
+              style={styles.avatar}
+            />
+            <View style={styles.userDetails}>
+              <Text style={styles.userName}>Trong Minh</Text>
+              <Text style={styles.userCoins}>0 Xu</Text>
             </View>
-          </View>
+          </>
         ) : (
-          // Nếu chưa đăng nhập
           <View style={styles.authContainer}>
-            <TouchableOpacity style={styles.LoginLogoutButton} onPress={() => navigation.navigate("Login")}>
-              <User name="user-circle" size={20} style={styles.Icon}/>
+            <TouchableOpacity
+              style={styles.LoginLogoutButton}
+              onPress={() => navigation.navigate("Login")}
+            >
+              <User name="user-circle" size={20} style={styles.Icon} />
               <Text style={styles.authText}>Đăng Nhập</Text>
             </TouchableOpacity>
             <Text style={styles.centerWall}>|</Text>
-            <TouchableOpacity style={styles.LoginLogoutButton} onPress={() => setIsLoggedIn(true)}>
+            <TouchableOpacity
+              style={styles.LoginLogoutButton}
+              onPress={() => setIsLoggedIn(true)}
+            >
               <Text style={styles.authText}>Đăng Ký</Text>
             </TouchableOpacity>
           </View>
         )}
       </View>
-
-      {/* Lịch sử đặt hẹn */}
-      <View style={styles.historyContainer}>
-        <TouchableOpacity style={styles.historyItem}>
-          <Ionicons name="alarm-outline" size={24} color="green" />
-          <Text style={styles.historyText}>Lịch sử đặt hẹn SPA</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.historyItem}>
-          <MaterialIcons name="history" size={24} color="green" />
-          <Text style={styles.historyText}>Lịch sử liệu trình</Text>
-        </TouchableOpacity>
-      </View>
-
+      {/* Khu vực */}
+      <TouchableOpacity style={styles.locationBox}>
+        <Text style={styles.locationTitle}>📍 Khu vực bạn chọn hiện tại</Text>
+        <Text style={styles.locationText}>
+          Phường Nguyễn An Ninh, Thành Phố Vũng Tàu, Bà Rịa Vũng Tàu
+        </Text>
+      </TouchableOpacity>
       {/* Đơn hàng */}
       <View style={styles.section}>
-        <Text style={styles.sectionTitle}>Đơn hàng</Text>
-        <FlatList
-          data={orderStatus}
-          horizontal
-          keyExtractor={(item) => item.id.toString()}
-          renderItem={({ item }) => (
-            <TouchableOpacity style={styles.orderItem}>
-              <Ionicons name={item.icon} size={24} color="green" />
-              <Text>{item.title}</Text>
+        <View style={styles.orderSection}>
+          <Text style={styles.sectionTitle}>Đơn hàng</Text>
+          <Text style={styles.viewAll}>
+            Xem tất cả <AntDesign name="right" size={18} />
+          </Text>
+        </View>
+        <View style={styles.orderContainer}>
+          {[
+            { icon: "check-square", text: "Mới đặt" },
+            { icon: "truck", text: "Đang xử lý" },
+            { icon: "check-circle", text: "Thành công" },
+            { icon: "refresh-cw", text: "Đã hủy" },
+          ].map((item, index) => (
+            <TouchableOpacity key={index} style={styles.orderItem}>
+              <Feather name={item.icon} size={24} color="#6EE7B7" />
+              <Text style={styles.orderText}>{item.text}</Text>
             </TouchableOpacity>
-          )}
-        />
+          ))}
+        </View>
       </View>
-
+      {/* Sản phẩm đã mua */}
+      <View style={styles.section}>
+        <View style={styles.orderSection}>
+          <Text style={styles.sectionTitle}>Sản phẩm đã mua</Text>
+          <Text style={styles.viewAll}>
+            Xem tất cả <AntDesign name="right" size={18} />
+          </Text>
+        </View>
+        <ScrollView horizontal style={styles.productScroll}>
+          {[
+            { name: "Viên uống DHC", price: "100.000 đ" },
+            { name: "Bông tẩy trang", price: "26.000 đ" },
+          ].map((item, index) => (
+            <View key={index} style={styles.productBox}>
+              <Image
+                source={{ uri: "https://via.placeholder.com/80" }}
+                style={styles.productImage}
+              />
+              <Text style={styles.productName}>{item.name}</Text>
+              <Text style={styles.productPrice}>{item.price}</Text>
+            </View>
+          ))}
+        </ScrollView>
+      </View>
       {/* Menu chức năng */}
       <View style={styles.section}>
-        <FlatList
-          data={menuItems}
-          numColumns={4}
-          keyExtractor={(item) => item.id.toString()}
-          renderItem={({ item }) => (
-            <TouchableOpacity style={styles.menuItem}>
-              <Ionicons name={item.icon} size={24} color="green" />
-              <Text style={styles.menuText}>{item.title}</Text>
+        <View style={styles.gridContainer}>
+          {[
+            { icon: "eye", text: "Đã xem" },
+            { icon: "heart", text: "Yêu thích" },
+            { icon: "star", text: "Đánh giá" },
+            { icon: "gift", text: "Đổi quà" },
+            { icon: "user", text: "Cá nhân" },
+            { icon: "map-pin", text: "Số địa chỉ" },
+            { icon: "help-circle", text: "Hỏi đáp" },
+            { icon: "help-circle", text: "Hỏi đáp" },
+          ].map((item, index) => (
+            <TouchableOpacity key={index} style={styles.menuItem}>
+              <Feather name={item.icon} size={24} color="#6B7280" />
+              <Text style={styles.menuText}>{item.text}</Text>
             </TouchableOpacity>
-          )}
-        />
+          ))}
+        </View>
       </View>
-    </View>
+    </ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: "#fff", paddingTop: 35 },
   header: {
-    backgroundColor: "#FFCFCF",
-    padding: 15,
+    backgroundColor: "#FEE2E2",
+    padding: 10,
     flexDirection: "row",
     alignItems: "center",
   },
@@ -141,35 +151,28 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginLeft: 10,
     marginRight: 10,
-    padding:10,
-    backgroundColor:'#fff',
+    padding: 5,
+    backgroundColor: "#fff",
     gap: 10,
-    borderRadius: 5
+    borderRadius: 5,
   },
-  qrIcon: { marginLeft: 10 },
-
-  profileInfo: {
+  userInfo: {
     flexDirection: "row",
     alignItems: "center",
     padding: 15,
-    backgroundColor: "#FFCFCF",
+    backgroundColor: "#FEE2E2",
   },
-  loggedInContainer: {
-    flexDirection: "row",
-    alignItems: "center",
-  },
-
-  avatar: { width: 50, height: 50, borderRadius: 25, marginRight: 15 },
-  userName: { fontSize: 16, fontWeight: "bold" },
-  userPoints: { fontSize: 14, color: "gray" },
-
+  avatar: { width: 50, height: 50, borderRadius: 25, backgroundColor: "#ccc" },
+  userDetails: { marginLeft: 10 },
+  userName: { fontSize: 18, fontWeight: "bold", color: "#333" },
+  userCoins: { fontSize: 14, color: "#777" },
   authContainer: {
     flexDirection: "row",
     justifyContent: "space-between",
   },
-  Icon:{
-    marginRight:5,
-    alignSelf:'center'
+  Icon: {
+    marginRight: 5,
+    alignSelf: "center",
   },
   LoginLogoutButton: {
     // backgroundColor: "#FF6B6B",
@@ -177,40 +180,77 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     borderRadius: 5,
     marginHorizontal: 5,
-    flexDirection: 'row',
-    alignItems:'center'
+    flexDirection: "row",
+    alignItems: "center",
   },
-  centerWall:{
-    paddingVertical:9,
-    color:'#fff',
-    height:40
+  centerWall: {
+    paddingVertical: 9,
+    color: "#fff",
+    height: 40,
   },
   authText: {
     color: "white",
     fontWeight: "bold",
   },
-  historyContainer: {
+  locationBox: {
+    backgroundColor: "#fff",
+    padding: 15,
+    margin: 10,
+    borderRadius: 10,
+    elevation: 10,
+  },
+  locationTitle: { fontWeight: "bold", color: "#333" },
+  locationText: { color: "#555" },
+  orderSection: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    padding: 10,
+  },
+  viewAll: { color: "#666666" },
+  section: { padding: 10 },
+  sectionTitle: { fontSize: 18, fontWeight: "bold", color: "#333" },
+  orderContainer: {
     flexDirection: "row",
     justifyContent: "space-around",
-    backgroundColor: "#F5F5F5",
-    padding: 15,
+    marginTop: 10,
   },
-  historyItem: { alignItems: "center" },
-  historyText: { marginTop: 5, fontSize: 14 },
-
-  section: { padding: 15 },
-  sectionTitle: { fontSize: 16, fontWeight: "bold", marginBottom: 10 },
-
-  orderItem: {
-    alignItems: "center",
+  orderItem: { alignItems: "center" },
+  orderText: { color: "#555", fontSize: 12, marginTop: 5 },
+  productScroll: { marginTop: 10 },
+  productBox: {
+    backgroundColor: "#fff",
     padding: 10,
-    backgroundColor: "#F5F5F5",
-    marginRight: 10,
     borderRadius: 10,
+    //
+    marginRight: 10,
   },
-
-  menuItem: { alignItems: "center", flex: 1, padding: 10 },
-  menuText: { fontSize: 12, marginTop: 5 },
+  productImage: { width: 80, height: 80, borderRadius: 10 },
+  productName: { fontSize: 12, color: "#333", marginTop: 5 },
+  productPrice: { fontSize: 14, fontWeight: "bold", color: "#FF69B4" },
+  buyAgainButton: {
+    backgroundColor: "#FFE4E6",
+    padding: 5,
+    borderRadius: 5,
+    marginTop: 5,
+  },
+  buyAgainText: { color: "#FF69B4", fontSize: 12 },
+  gridContainer: {
+    flexDirection: "row",
+    flexWrap: "wrap",
+    justifyContent: "space-around",
+  },
+  menuItem: { alignItems: "center", width: "25%", padding: 10 },
+  menuText: { fontSize: 12, color: "#555", marginTop: 5 },
+  navbar: {
+    flexDirection: "row",
+    justifyContent: "space-around",
+    borderTopWidth: 1,
+    borderColor: "#ddd",
+    padding: 10,
+  },
+  navItem: { alignItems: "center" },
+  navText: { fontSize: 12, color: "#555" },
+  navTextActive: { color: "#10B981", fontWeight: "bold" },
 });
 
 export default ProfileScreen;

@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   sectionTitle: { fontSize: 18, fontWeight: "bold", color: "#27ae60" },
-  viewAll: { color: "#2980b9" },
+  viewAll: { color: "#666666" },
   categories: { flexDirection: "row", paddingHorizontal: 10 },
   productList: {
     flexDirection: "row",

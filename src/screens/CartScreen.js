@@ -22,9 +22,6 @@ const CartScreen = () => {
     <View style={styles.container}>
       {/* Header */}
       <View style={styles.header}>
-        {/* <TouchableOpacity onPress={() => navigation.goBack()}>
-          <Icon name="chevron-left" size={30} color="#000" />
-        </TouchableOpacity> */}
         <Text style={styles.headerTitle}>Giỏ hàng</Text>
         <View style={{ width: 30 }} />
       </View>

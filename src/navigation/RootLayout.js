@@ -12,7 +12,7 @@ export default function RootLayout() {
       <Stack.Navigator screenOptions={{ headerShown: false }}>
         {/* Ứng dụng mở vào màn hình chính (Bottom Tabs) */}
         <Stack.Screen name="Main" component={BottomNavigation} />
-        
+
         {/* Khi bấm đăng nhập, sẽ điều hướng đến Login */}
         <Stack.Screen name="Login" component={LoginScreen} />
         {/* <Stack.Screen name="Register" component={RegisterScreen} /> */}

@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Image, StyleSheet, Dimensions } from "react-native";
+import { View, Image, Dimensions } from "react-native";
 import Swiper from "react-native-swiper";
 
 const { width } = Dimensions.get("window");
@@ -12,44 +12,36 @@ const banners = [
 
 const Banner = () => {
   return (
-    <View style={styles.container}>
+    <View className="h-40">
       <Swiper
         autoplay
         autoplayTimeout={3}
         showsPagination={true}
-        dotStyle={styles.dot}
-        activeDotStyle={styles.activeDot}
+        dotStyle={{
+          backgroundColor: "rgba(0,0,0,.2)",
+          width: 10,
+          height: 2,
+          borderRadius: 10,
+          marginTop: 20,
+        }}
+        activeDotStyle={{
+          backgroundColor: "#ff6347",
+          width: 10,
+          height: 2,
+          marginTop: 20,
+        }}
       >
         {banners.map((image, index) => (
-          <Image key={index} source={image} style={styles.banner} />
+          <Image
+            key={index}
+            source={image}
+            className="w-[97%] h-[150px] self-center rounded-lg mx-7"
+            resizeMode="contain"
+          />
         ))}
       </Swiper>
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: { height: 160 },
-  banner: {
-    width: width * 0.97,
-    height: 150,
-    alignSelf: "center",
-    borderRadius: 10,
-    marginHorizontal: 30,
-    resizeMode: "contain",
-  },
-  dot: {
-    backgroundColor: "rgba(0,0,0,.2)",
-    width: 8,
-    height: 8,
-    borderRadius: 4,
-    marginHorizontal: 3,
-  },
-  activeDot: {
-    backgroundColor: "#ff6347",
-    width: 10,
-    height: 10,
-  },
-});
 
 export default Banner;
