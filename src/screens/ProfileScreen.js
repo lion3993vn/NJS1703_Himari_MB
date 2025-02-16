@@ -138,12 +138,13 @@ const ProfileScreen = () => {
 };
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: "#fff", paddingTop: 35 },
+  container: { flex: 1, backgroundColor: "#fff" },
   header: {
     backgroundColor: "#FEE2E2",
     padding: 10,
     flexDirection: "row",
     alignItems: "center",
+    paddingTop: 50,
   },
   searchBar: {
     flex: 1,

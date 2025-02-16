@@ -102,12 +102,12 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fff",
-    marginTop: 38,
   },
   header: {
     backgroundColor: "#F6BDC8",
-    paddingVertical: 15,
+    paddingBottom: 15,
     alignItems: "center",
+    paddingTop: 50,
   },
   headerTitle: {
     color: "#fff",
