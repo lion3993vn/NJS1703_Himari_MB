@@ -1,4 +1,5 @@
 import React from "react";
+import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import { useRoute, useNavigation } from "@react-navigation/native";
@@ -9,6 +10,9 @@ import CategoryScreen from "../screens/CategoryScreen";
 import CartScreen from "../screens/CartScreen";
 import NotificationsScreen from "../screens/NotificationsScreen";
 import ProfileScreen from "../screens/ProfileScreen";
+import { ConsultScreen } from "../screens/ConsultScreen";
+import GradientBackground from "../components/layout/gradientBackground";
+import ScreenWrapper from "../components/layout/ScreenWrapper ";
 
 const Tab = createBottomTabNavigator();
 
@@ -26,12 +30,28 @@ export default function BottomNavigation() {
             else if (route.name === "Giỏ Hàng") iconName = "cart";
             else if (route.name === "Thông Báo") iconName = "bell";
             else if (route.name === "Tài Khoản") iconName = "account";
+            else if (route.name === "Tư Vấn") iconName = "chat-outline";
 
             return <Icon name={iconName} size={size} color={color} />;
           },
         })}
       >
-        <Tab.Screen name="Trang Chủ" component={HomeScreen} />
+        <Tab.Screen
+          name="Tư Vấn"
+          component={() => (
+            <ScreenWrapper>
+              <ConsultScreen />
+            </ScreenWrapper>
+          )}
+        />
+        <Tab.Screen
+          name="Trang Chủ"
+          component={() => (
+            <ScreenWrapper>
+              <HomeScreen />
+            </ScreenWrapper>
+          )}
+        />
         <Tab.Screen name="Danh Mục" component={CategoryScreen} />
         <Tab.Screen name="Giỏ Hàng" component={CartScreen} />
         <Tab.Screen name="Thông Báo" component={NotificationsScreen} />
