@@ -36,67 +36,25 @@ export default function BottomNavigation() {
           },
         })}
       >
-        <Tab.Screen
-          name="Tư Vấn"
-          component={() => (
+        <Tab.Screen name="Tư Vấn">
+          {() => (
             <ScreenWrapper>
               <ConsultScreen />
             </ScreenWrapper>
           )}
-        />
-        <Tab.Screen
-          name="Trang Chủ"
-          component={() => (
+        </Tab.Screen>
+        <Tab.Screen name="Trang Chủ">
+          {() => (
             <ScreenWrapper>
               <HomeScreen />
             </ScreenWrapper>
           )}
-        />
+        </Tab.Screen>
         <Tab.Screen name="Danh Mục" component={CategoryScreen} />
         <Tab.Screen name="Giỏ Hàng" component={CartScreen} />
         <Tab.Screen name="Thông Báo" component={NotificationsScreen} />
         <Tab.Screen name="Tài Khoản" component={ProfileScreen} />
       </Tab.Navigator>
-
-      {/* Bong bóng chat */}
-      <ChatBubble />
     </>
   );
 }
-
-// 📌 Bong bóng chat
-function ChatBubble() {
-  const route = useRoute();
-  const navigation = useNavigation();
-
-  // Chỉ hiển thị bong bóng trên các trang này
-  const showChatBubble = ["Trang Chủ", "Danh Mục", "Tài Khoản"].includes(
-    route.name
-  );
-
-  if (!showChatBubble) return null;
-
-  return (
-    <TouchableOpacity
-      style={styles.chatBubble}
-      onPress={() => navigation.navigate("Chat")}
-    >
-      <Icon name="chat" size={28} color="#fff" />
-    </TouchableOpacity>
-  );
-}
-
-const styles = StyleSheet.create({
-  chatBubble: {
-    position: "absolute",
-    bottom: 80,
-    right: 20,
-    backgroundColor: "#FF5733",
-    width: 55,
-    height: 55,
-    borderRadius: 27.5,
-    justifyContent: "center",
-    alignItems: "center",
-    elevation: 5,
-  },
-});

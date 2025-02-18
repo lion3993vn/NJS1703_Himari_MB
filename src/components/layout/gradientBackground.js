@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
   content: {
     flex: 1,
     backgroundColor: "transparent", // Đảm bảo nội dung không che gradient
-    padding: 20,
+    // padding: 20,
   },
 });
 

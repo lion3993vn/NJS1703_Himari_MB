@@ -3,10 +3,8 @@ export const products = [
     id: "1",
     brandName: "Caryophy",
     name: "Gel Tẩy Tế Bào Chết Caryophy",
-    image: require("../../../assets/img/sample.png"),
+    image: require("../../../assets/img/sampleproduct.png"),
     price: 450000, // Giá gốc
-    discountPrice: 278000, // Giá giảm
-    discount: 38, // % giảm giá
     rating: 5.0, // Đánh giá sao
     sold: 320, // Lượt mua/tháng
   },
@@ -14,10 +12,9 @@ export const products = [
     id: "2",
     brandName: "Olay",
     name: "Kem Dưỡng Olay Luminous",
-    image: require("../../../assets/img/sample.png"),
+    image: require("../../../assets/img/sampleproduct.png"),
     price: 270000,
-    discountPrice: 188000,
-    discount: 30,
+
     rating: 4.9,
     sold: 1200,
   },
@@ -25,10 +22,8 @@ export const products = [
     id: "3",
     brandName: "Caryophy",
     name: "Gel Tẩy Tế Bào Chết Caryophy",
-    image: require("../../../assets/img/sample.png"),
+    image: require("../../../assets/img/sampleproduct.png"),
     price: 450000, // Giá gốc
-    discountPrice: 278000, // Giá giảm
-    discount: 38, // % giảm giá
     rating: 5.0, // Đánh giá sao
     sold: 320, // Lượt mua/tháng
   },
@@ -36,10 +31,8 @@ export const products = [
     id: "4",
     brandName: "Caryophy",
     name: "Gel Tẩy Tế Bào Chết Caryophy",
-    image: require("../../../assets/img/sample.png"),
+    image: require("../../../assets/img/sampleproduct.png"),
     price: 450000, // Giá gốc
-    discountPrice: 278000, // Giá giảm
-    discount: 38, // % giảm giá
     rating: 5.0, // Đánh giá sao
     sold: 320, // Lượt mua/tháng
   },

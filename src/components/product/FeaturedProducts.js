@@ -5,6 +5,7 @@ import ProductItem from "./ProductItem";
 
 // Import hình ảnh sản phẩm
 import productImage from "../../../assets/img/sampleproduct.png";
+import { products } from "./product";
 
 const FeaturedProducts = () => {
   return (
@@ -27,21 +28,16 @@ const FeaturedProducts = () => {
         showsHorizontalScrollIndicator={false}
         className="flex-row"
       >
-        <ProductItem
-          image={productImage}
-          title="Nước Tẩy Trang Bioderma"
-          price="VND 249.000"
-        />
-        <ProductItem
-          image={productImage}
-          title="Nước Tẩy Trang Bioderma"
-          price="VND 249.000"
-        />
-        <ProductItem
-          image={productImage}
-          title="Nước Tẩy Trang Bioderma"
-          price="VND 249.000"
-        />
+        {products.map((product) => (
+          <ProductItem
+            key={product.id}
+            image={product.image}
+            title={product.name}
+            price={`VND ${product.price.toLocaleString()}`}
+            start={product.rating}
+            purchase={product.sold}
+          />
+        ))}
       </ScrollView>
     </View>
   );
