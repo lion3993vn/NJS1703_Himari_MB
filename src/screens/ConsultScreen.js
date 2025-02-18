@@ -1,95 +1,58 @@
-import React from "react";
-import {
-  View,
-  Text,
-  StyleSheet,
-  FlatList,
-  TouchableOpacity,
-} from "react-native";
-import { consultData } from "../components/data/consultData";
+import React, { useEffect, useState } from "react";
+import { View, Text, TouchableOpacity, ActivityIndicator } from "react-native";
+import Consults from "../components/consult/consult";
+import { consultData } from "../data/consultData";
+import NewConsultModal from "../components/consult/NewConsultModal";
 
 export const ConsultScreen = () => {
+  const [consultDataState, setConsultDataState] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [modalVisible, setModalVisible] = useState(false);
+
+  useEffect(() => {
+    // Giả lập thời gian load API (Fake API Call)
+    setTimeout(() => {
+      setConsultDataState(consultData);
+      setLoading(false);
+    }, 1000);
+  }, []);
+
   // Nhóm dữ liệu theo category
-  const groupedData = consultData.reduce((acc, item) => {
+  const groupedData = consultDataState.reduce((acc, item) => {
     if (!acc[item.category]) acc[item.category] = [];
     acc[item.category].push(item);
     return acc;
   }, {});
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.header}>HimaBot - Tư Vấn</Text>
+    <View className="flex-1 p-4">
+      <Text className="text-xl font-bold text-center text-pink-600 mb-4">
+        HimaBot - Tư Vấn
+      </Text>
 
-      <FlatList
-        data={Object.keys(groupedData)}
-        keyExtractor={(item) => item}
-        renderItem={({ item }) => (
-          <View>
-            <Text style={styles.category}>{item}</Text>
-            {groupedData[item].map((consult) => (
-              <View key={consult.id} style={styles.item}>
-                <Text style={styles.message}>{consult.message}</Text>
-                <Text style={styles.time}>{consult.time}</Text>
-              </View>
-            ))}
-          </View>
+      {/* Dùng flex-1 để đẩy nút xuống dưới */}
+      <View className="flex-1 space-y-4">
+        {loading ? (
+          <ActivityIndicator size="large" color="#D6336C" />
+        ) : (
+          <Consults groupedData={groupedData} />
         )}
-      />
+      </View>
 
-      {/* Nút Tư Vấn Mới */}
-      <TouchableOpacity style={styles.button}>
-        <Text style={styles.buttonText}>+ Tư Vấn Mới</Text>
-      </TouchableOpacity>
+      {/* View này sẽ luôn nằm dưới cùng */}
+      <View className="mt-5">
+        <TouchableOpacity
+          style={{ alignSelf: "center", width: 150 }}
+          className="bg-[#FE99AD] py-4 px-6 rounded-full items-center mx-auto"
+          onPress={() => setModalVisible(true)}
+        >
+          <Text className="text-white text-xl font-bold">+ Tư Vấn Mới</Text>
+        </TouchableOpacity>
+      </View>
+      <NewConsultModal
+        visible={modalVisible}
+        onClose={() => setModalVisible(false)}
+      />
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  gradient: {
-    flex: 1,
-  },
-  container: {
-    flex: 1,
-    padding: 16,
-  },
-  header: {
-    fontSize: 18,
-    fontWeight: "bold",
-    textAlign: "center",
-    color: "#D6336C",
-    marginBottom: 16,
-  },
-  category: {
-    fontSize: 16,
-    fontWeight: "bold",
-    color: "#D6336C",
-    marginTop: 10,
-  },
-  item: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    padding: 10,
-    backgroundColor: "#F8D7DA",
-    marginTop: 5,
-    borderRadius: 8,
-  },
-  message: {
-    fontSize: 14,
-    color: "#333",
-  },
-  time: {
-    fontSize: 14,
-    color: "#666",
-  },
-  button: {
-    backgroundColor: "#FF86A5",
-    padding: 12,
-    borderRadius: 10,
-    alignItems: "center",
-    marginTop: 20,
-  },
-  buttonText: {
-    color: "#fff",
-    fontWeight: "bold",
-  },
-});
