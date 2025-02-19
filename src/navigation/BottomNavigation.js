@@ -11,7 +11,6 @@ import CartScreen from "../screens/CartScreen";
 import NotificationsScreen from "../screens/NotificationsScreen";
 import ProfileScreen from "../screens/ProfileScreen";
 import { ConsultScreen } from "../screens/ConsultScreen";
-import GradientBackground from "../components/layout/gradientBackground";
 import ScreenWrapper from "../components/layout/ScreenWrapper ";
 
 const Tab = createBottomTabNavigator();
@@ -36,14 +35,13 @@ export default function BottomNavigation() {
           },
         })}
       >
-        <Tab.Screen
-          name="Tư Vấn"
-          component={() => (
+        <Tab.Screen name="Tư Vấn">
+          {() => (
             <ScreenWrapper>
               <ConsultScreen />
             </ScreenWrapper>
           )}
-        />
+        </Tab.Screen>
         <Tab.Screen
           name="Trang Chủ"
           component={() => (

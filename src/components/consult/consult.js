@@ -1,7 +1,7 @@
 import React from "react";
-import { View, Text, FlatList } from "react-native";
+import { View, Text, FlatList, TouchableOpacity } from "react-native";
 
-const Consults = ({ groupedData }) => {
+const Consults = ({ groupedData, onConsultPress }) => {
   const categories = Object.keys(groupedData || {});
 
   return (
@@ -9,7 +9,7 @@ const Consults = ({ groupedData }) => {
       data={categories}
       keyExtractor={(item) => item}
       ListEmptyComponent={
-        <View className="mt-72">
+        <View>
           <Text className="text-center text-gray-500 text-2xl -tracking-tighter">
             Bạn đang gặp vấn đề về da?{"\n"}Đừng lo, hãy đặt câu hỏi để được
             chuyên gia tư vấn ngay!
@@ -20,11 +20,11 @@ const Consults = ({ groupedData }) => {
         <View>
           <Text className="text-pink-600 text-xl font-bold pt-6">{item}</Text>
           {groupedData[item]?.map((consult) => (
-            <View
+            <TouchableOpacity
               key={consult.id}
+              onPress={() => onConsultPress(consult)} // Gọi hàm từ cha
               className="flex-row justify-between px-2 py-1 bg-[rgba(118,112,118,0.1)] rounded-lg mt-2"
             >
-              {/* Container for bodyPart with flex to center it */}
               <View className="bg-[#FE99AD] my-auto rounded-lg w-[84px] h-8 justify-center items-center">
                 <Text className="text-white text-center font-semibold">
                   {consult.bodyPart}
@@ -38,7 +38,7 @@ const Consults = ({ groupedData }) => {
                 {consult.message}
               </Text>
               <Text className="text-gray-500">{consult.time}</Text>
-            </View>
+            </TouchableOpacity>
           ))}
         </View>
       )}
