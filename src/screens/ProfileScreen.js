@@ -51,12 +51,12 @@ const ProfileScreen = () => {
               <Text style={styles.authText}>Đăng Nhập</Text>
             </TouchableOpacity>
             <Text style={styles.centerWall}>|</Text>
-            <TouchableOpacity
+            {/* <TouchableOpacity
               style={styles.LoginLogoutButton}
               onPress={() => setIsLoggedIn(true)}
             >
               <Text style={styles.authText}>Đăng Ký</Text>
-            </TouchableOpacity>
+            </TouchableOpacity> */}
           </View>
         )}
       </View>

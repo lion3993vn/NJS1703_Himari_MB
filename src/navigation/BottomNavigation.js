@@ -37,8 +37,6 @@ export default function BottomNavigation() {
       >
         <Tab.Screen name="Tư Vấn">
           {() => (
-        <Tab.Screen name="Tư Vấn">
-          {() => (
             <ScreenWrapper>
               <ConsultScreen />
             </ScreenWrapper>

@@ -9,6 +9,7 @@ import {
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import Icon from "react-native-vector-icons/AntDesign";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 const LoginScreen = () => {
   const navigation = useNavigation();
@@ -16,28 +17,30 @@ const LoginScreen = () => {
   const [password, setPassword] = useState("");
 
   return (
-    <View style={styles.container}>
-      {/* Header */}
-      <View style={styles.header}>
-        <TouchableOpacity onPress={() => navigation.goBack()}>
-          <Icon name="close" size={24} color="#fff" />
+    <SafeAreaView edges={["top", "left", "right"]} style={{ flex: 1, backgroundColor:"#FFC0CB" }}>
+      <View style={styles.container}>
+        {/* Header */}
+        <View style={styles.header}>
+          <TouchableOpacity onPress={() => navigation.goBack()}>
+            <Icon name="close" size={24} color="#fff" />
+          </TouchableOpacity>
+          <Text style={styles.headerTitle}>Đăng Nhập</Text>
+          <View style={{ width: 24 }} />
+        </View>
+
+        {/* Logo */}
+        <Image
+          source={require("../../assets/img/Logo.png")}
+          style={styles.logo}
+        />
+        <Text style={styles.text}>Đăng nhập với</Text>
+
+        {/* Nút đăng nhập Google */}
+        <TouchableOpacity style={styles.googleButton}>
+          <Image source={require("../../assets/img/googlebutton.png")} />
         </TouchableOpacity>
-        <Text style={styles.headerTitle}>Đăng Nhập</Text>
-        <View style={{ width: 24 }} />
       </View>
-
-      {/* Logo */}
-      <Image
-        source={require("../../assets/img/Logo.png")}
-        style={styles.logo}
-      />
-      <Text style={styles.text}>Đăng nhập với</Text>
-
-      {/* Nút đăng nhập Google */}
-      <TouchableOpacity style={styles.googleButton}>
-        <Image source={require("../../assets/img/googlebutton.png")} />
-      </TouchableOpacity>
-    </View>
+    </SafeAreaView>
   );
 };
 
@@ -46,7 +49,6 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#fff",
     alignItems: "center",
-    paddingTop: 30,
   },
   header: {
     width: "100%",
@@ -55,7 +57,8 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     backgroundColor: "#FFC0CB",
     paddingHorizontal: 20,
-    paddingVertical: 15,
+    paddingBottom: 10,
+    paddingTop: 10
   },
   headerTitle: {
     fontSize: 18,
