@@ -8,7 +8,7 @@ const HeaderCategory = ({ title = "Danh Mục" }) => {
   const navigation = useNavigation();
 
   return (
-    <View className="flex-row justify-between items-center px-4 py-1 bg-white shadow-md">
+    <View className="flex-row justify-between items-center px-4 bg-white">
       {/* Nút Home */}
       <TouchableOpacity onPress={() => navigation.navigate("Trang Chủ")}>
         <Icon name="home" size={40} color="#FFB6C1" />
