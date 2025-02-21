@@ -1,23 +1,16 @@
 import React, { useState } from "react";
-import {
-  View,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  Image,
-  StyleSheet,
-} from "react-native";
+import { View, Text, TouchableOpacity, Image, StyleSheet } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import Icon from "react-native-vector-icons/AntDesign";
 import { SafeAreaView } from "react-native-safe-area-context";
+import useGoogleAuth from "../api/googleAuth";
 
 const LoginScreen = () => {
   const navigation = useNavigation();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const { promptAsync } = useGoogleAuth(); // Sử dụng hook
 
   return (
-    <SafeAreaView edges={["top", "left", "right"]} style={{ flex: 1, backgroundColor:"#FFC0CB" }}>
+    <SafeAreaView style={{ flex: 1, backgroundColor: "#FFC0CB" }}>
       <View style={styles.container}>
         {/* Header */}
         <View style={styles.header}>
@@ -27,16 +20,17 @@ const LoginScreen = () => {
           <Text style={styles.headerTitle}>Đăng Nhập</Text>
           <View style={{ width: 24 }} />
         </View>
-
-        {/* Logo */}
+        F{/* Logo */}
         <Image
           source={require("../../assets/img/Logo.png")}
           style={styles.logo}
         />
         <Text style={styles.text}>Đăng nhập với</Text>
-
         {/* Nút đăng nhập Google */}
-        <TouchableOpacity style={styles.googleButton}>
+        <TouchableOpacity
+          style={styles.googleButton}
+          onPress={() => promptAsync()}
+        >
           <Image source={require("../../assets/img/googlebutton.png")} />
         </TouchableOpacity>
       </View>
@@ -58,7 +52,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#FFC0CB",
     paddingHorizontal: 20,
     paddingBottom: 10,
-    paddingTop: 10
+    paddingTop: 10,
   },
   headerTitle: {
     fontSize: 18,
