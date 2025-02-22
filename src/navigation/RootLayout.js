@@ -4,7 +4,8 @@ import { NavigationContainer } from "@react-navigation/native";
 import LoginScreen from "../screens/LoginScreen";
 import BottomNavigation from "./BottomNavigation";
 import ChatScreen from "../screens/ChatScreen";
-
+import PaymentScreen from "../screens/PaymentScreen";
+import PurchaseSuc from "../screens/PurchaseSuc";
 const Stack = createStackNavigator();
 
 export default function RootLayout() {
@@ -18,6 +19,16 @@ export default function RootLayout() {
         {/* Khi bấm đăng nhập, sẽ điều hướng đến Login */}
         <Stack.Screen name="Login" component={LoginScreen} />
         {/* <Stack.Screen name="Register" component={RegisterScreen} /> */}
+        <Stack.Screen
+          name="Payment"
+          component={PaymentScreen}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="PaymentSuccess"
+          component={PurchaseSuc}
+          options={{ headerShown: false }}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
