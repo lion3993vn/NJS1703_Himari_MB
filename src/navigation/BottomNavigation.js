@@ -27,7 +27,6 @@ export default function BottomNavigation() {
             if (route.name === "Trang Chủ") iconName = "home";
             else if (route.name === "Danh Mục") iconName = "apps";
             else if (route.name === "Giỏ Hàng") iconName = "cart";
-            else if (route.name === "Thông Báo") iconName = "bell";
             else if (route.name === "Tài Khoản") iconName = "account";
             else if (route.name === "Tư Vấn") iconName = "chat-outline";
 
@@ -51,7 +50,6 @@ export default function BottomNavigation() {
         </Tab.Screen>
         <Tab.Screen name="Danh Mục" component={CategoryScreen} />
         <Tab.Screen name="Giỏ Hàng" component={CartScreen} />
-        <Tab.Screen name="Thông Báo" component={NotificationsScreen} />
         <Tab.Screen name="Tài Khoản" component={ProfileScreen} />
       </Tab.Navigator>
     </>

@@ -4,6 +4,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import LoginScreen from "../screens/LoginScreen";
 import BottomNavigation from "./BottomNavigation";
 import ChatScreen from "../screens/ChatScreen";
+import NotificationScreen from "../screens/NotificationsScreen";
 
 const Stack = createStackNavigator();
 
@@ -17,7 +18,7 @@ export default function RootLayout() {
         <Stack.Screen name="Chat" component={ChatScreen} />
         {/* Khi bấm đăng nhập, sẽ điều hướng đến Login */}
         <Stack.Screen name="Login" component={LoginScreen} />
-        {/* <Stack.Screen name="Register" component={RegisterScreen} /> */}
+        <Stack.Screen name="Notification" component={NotificationScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

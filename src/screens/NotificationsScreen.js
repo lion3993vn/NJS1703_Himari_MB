@@ -7,16 +7,23 @@ import {
   StyleSheet,
 } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons"; // Icon cho tab bar
+import Icon from "react-native-vector-icons/AntDesign";
 import { notifications } from "../components/notification/notificationsdata";
+import { useNavigation } from "@react-navigation/native";
 
 const NotificationScreen = () => {
+  const navigation = useNavigation();
   const [selectedTab, setSelectedTab] = useState("Khuyến mãi");
   const userNotifications = [];
   return (
     <View style={styles.container}>
       {/* Header */}
       <View style={styles.header}>
+        <TouchableOpacity onPress={() => navigation.goBack()}>
+          <Icon name="arrowleft" size={24} color="#fff" />
+        </TouchableOpacity>
         <Text style={styles.headerTitle}>Thông báo</Text>
+        <View style={{ width: 24 }} />
       </View>
 
       {/* Tabs */}
@@ -105,9 +112,12 @@ const styles = StyleSheet.create({
   },
   header: {
     backgroundColor: "#F6BDC8",
-    paddingBottom: 15,
     alignItems: "center",
-    paddingTop: 50,
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    paddingVertical: 15,
+    paddingHorizontal: 20,
   },
   headerTitle: {
     color: "#fff",

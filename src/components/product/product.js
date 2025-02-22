@@ -2,7 +2,7 @@ export const products = [
   {
     id: "1",
     brandName: "Caryophy",
-    name: "Gel Tẩy Tế Bào Chết Caryophy",
+    name: "Nước Tẩy Trang Bioderma Sensibio H20 Solution Micellaire",
     image: require("../../../assets/img/sampleproduct.png"),
     price: 450000, // Giá gốc
     rating: 5.0, // Đánh giá sao

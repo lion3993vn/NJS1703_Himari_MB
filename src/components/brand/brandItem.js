@@ -3,7 +3,7 @@ import { View, Text, Image, TouchableOpacity, ScrollView } from "react-native";
 import { Link } from "expo-router";
 import { brands } from "./brand";
 
-const COLUMN_COUNT = 4; // Số thương hiệu mỗi hàng
+const COLUMN_COUNT = 3; // Số thương hiệu mỗi hàng
 
 const formatBrands = (data, columnCount) => {
   let rows = [];
@@ -31,15 +31,18 @@ const BrandList = () => {
       {/* Danh sách thương hiệu */}
       <ScrollView showsVerticalScrollIndicator={false}>
         {formattedBrands.map((row, rowIndex) => (
-          <View key={rowIndex} className="flex-row justify-between mb-2">
+          <View
+            key={rowIndex}
+            className="flex-row justify-between mb-2 w-full h-20"
+          >
             {row.map((item) => (
               <TouchableOpacity
                 key={item.id}
-                className="flex-1 items-center p-2"
+                className="flex-1 items-center mx-2 w-[30%]"
               >
                 <Image
                   source={item.image}
-                  className="w-20 h-10"
+                  className="w-full"
                   resizeMode="contain"
                 />
               </TouchableOpacity>

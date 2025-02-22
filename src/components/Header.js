@@ -4,10 +4,12 @@ import FontAwesome from "react-native-vector-icons/FontAwesome";
 
 import Search from "react-native-vector-icons/AntDesign";
 import Logo from "../../assets/img/Logo.png";
+import { useNavigation } from "@react-navigation/native";
 
 const Header = () => {
+  const navigation = useNavigation();
   return (
-    <View className="flex-row items-center bg-[#ebb3be] pt-12 px-1">
+    <View className="flex-row items-center bg-[#ebb3be] px-1">
       <Image source={Logo} className="w-16 h-16" />
       <View className="flex-1 flex-row items-center border-none bg-white rounded-xl mx-3 py-1">
         <TextInput
@@ -18,7 +20,10 @@ const Header = () => {
           <Search name="search1" size={22} color="#FFF" />
         </TouchableOpacity>
       </View>
-      <TouchableOpacity className="mr-5">
+      <TouchableOpacity
+        className="mr-5"
+        onPress={() => navigation.navigate("Notification")}
+      >
         <View className="bg-[#d6d4d4] p-2 rounded-full blur-3xl">
           <FontAwesome
             name="bell"
