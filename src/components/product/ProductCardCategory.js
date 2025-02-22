@@ -5,7 +5,10 @@ const ProductCardCategory = ({ product }) => {
   return (
     <View className="bg-white m-2 p-4 rounded-lg flex-1">
       <Image source={product.image} className="w-full h-40 rounded-md" />
-      <Text className="text-md mt-2 text-gray-800 font-semibold">
+      <Text
+        className="text-md mt-2 text-gray-800 font-semibold"
+        numberOfLines={2}
+      >
         {product.name}
       </Text>
       <View className="flex-row items-center space-x-1 mt-1 gap-2">

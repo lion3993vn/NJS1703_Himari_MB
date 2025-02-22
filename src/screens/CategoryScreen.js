@@ -12,7 +12,10 @@ const CategoryScreen = () => {
   const [selectedFilter, setSelectedFilter] = useState("Mới Nhất");
 
   return (
-    <SafeAreaView edges={["top", "left", "right"]} style={{ flex: 1, backgroundColor:"white" }}>
+    <SafeAreaView
+      edges={["top", "left", "right"]}
+      style={{ flex: 1, backgroundColor: "white" }}
+    >
       <FlatList
         data={products} // Dữ liệu sản phẩm
         numColumns={2} // Hiển thị dạng lưới 2 cột
